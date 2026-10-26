@@ -24,6 +24,23 @@
 
   <script>
     
+  // EXPIRATION CHECK - Auto-expires on November 2, 2026
+  (function() {
+    const EXPIRATION_DATE = new Date('2026-11-02T23:59:59');
+    const now = new Date();
+    if (now > EXPIRATION_DATE) {
+      document.body.innerHTML = '';
+      const container = document.createElement('div');
+      container.style.cssText = 'display:flex;align-items:center;justify-content:center;min-height:100vh;background:#faf9f5;font-family:-apple-system,BlinkMacSystemFont,sans-serif;padding:20px;';
+      const message = document.createElement('div');
+      message.style.cssText = 'max-width:500px;text-align:center;background:#fff;padding:40px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);';
+      message.innerHTML = '<h1 style="font-size:24px;font-weight:600;color:#333;margin-bottom:16px;">Itinerary Expired</h1><p style="font-size:16px;color:#666;line-height:1.5;">This itinerary link expired on November 2, 2026. Please contact the sender for an updated version.</p>';
+      container.appendChild(message);
+      document.body.appendChild(container);
+      throw new Error('Page expired');
+    }
+  })();
+
 document.addEventListener('DOMContentLoaded', async function() {
   const loading = document.getElementById('__bundler_loading');
   function setStatus(msg) { if (loading) loading.textContent = msg; }
